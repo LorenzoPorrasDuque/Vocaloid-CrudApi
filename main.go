@@ -1,6 +1,7 @@
 package main
 
 import (
+	"CrudApi/models"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -13,11 +14,6 @@ import (
 
 func main() {
 
-	type Product struct {
-		gorm.Model
-		Code  string
-		Price uint
-	}
 	if err := godotenv.Load(); err != nil {
 		log.Fatal("Error loading .env file")
 	}
@@ -35,7 +31,7 @@ func main() {
 		panic("failed to connect database")
 	}
 	fmt.Println("Connected to the database")
-	db.AutoMigrate(&Product{})
+	db.AutoMigrate(&models.Book{})
 
 	r := gin.Default()
 

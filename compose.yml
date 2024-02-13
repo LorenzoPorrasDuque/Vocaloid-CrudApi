@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    ports:
+      - "5432:5432"
+    networks:
+      - my-network
+  go-app:
+    build:
+      context: .
+      dockerfile: api.dockerfile
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: 123
+      DB_NAME: test
+    ports:
+      - "8080:8080"
+    networks:
+      - my-network
+
+networks:
+  my-network:
