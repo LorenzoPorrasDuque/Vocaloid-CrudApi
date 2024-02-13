@@ -4,7 +4,7 @@ FROM postgres:latest
 ENV POSTGRES_PASSWORD=123
 
 # Create a new database
-ENV POSTGRES_DB=cosa
+ENV POSTGRES_DB=test
 # Open port 5432
 
 EXPOSE 5432
