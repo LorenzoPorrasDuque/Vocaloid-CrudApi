@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres:latest
+    build:
+      context: .
+      dockerfile: db.dockerfile
     environment:
       POSTGRES_DB: test
       POSTGRES_USER: postgres
@@ -11,6 +13,7 @@ services:
       - "5432:5432"
     networks:
       - my-network
+
   go-app:
     build:
       context: .

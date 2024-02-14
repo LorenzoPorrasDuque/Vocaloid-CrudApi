@@ -17,6 +17,3 @@ EXPOSE 8080
 
 # Run the Go application
 CMD ["./main"]
-
-
-#-d --network=my-network -> This in needed inside the run command

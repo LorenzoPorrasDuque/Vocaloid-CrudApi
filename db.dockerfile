@@ -7,8 +7,3 @@ ENV POSTGRES_PASSWORD=123
 ENV POSTGRES_DB=test
 # Open port 5432
 EXPOSE 5432
-
-#create table cosa
-
-
-
