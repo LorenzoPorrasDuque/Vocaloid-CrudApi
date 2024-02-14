@@ -28,6 +28,8 @@ services:
       - "8080:8080"
     networks:
       - my-network
+    depends_on:
+      - postgres
 
 networks:
   my-network:
