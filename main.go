@@ -1,41 +1,22 @@
 package main
 
 import (
+	"CrudApi/database"
 	"CrudApi/models"
-	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
-	"log"
 	"net/http"
-	"os"
 )
 
 func main() {
+	db := database.ConnectToDb()
+	//create all tables
+	//preguntarle a a sebas diferencia entre & y * en este caso, para saber si se ahce copia o referencia
+	db.AutoMigrate(models.Book{}, models.Author{})
 
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("Error loading .env file")
-	}
-	dbHost := os.Getenv("DB_HOST")
-	dbPort := os.Getenv("DB_PORT")
-	dbUser := os.Getenv("DB_USER")
-	dbPassword := os.Getenv("DB_PASSWORD")
-	dbName := os.Getenv("DB_NAME")
-
-	dsn := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-		dbHost, dbPort, dbUser, dbPassword, dbName)
-
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if err != nil {
-		log.Fatal("Error connecting to the database")
-	}
-
-	fmt.Println("Connected to the database")
-	db.AutoMigrate(&models.Book{})
-
+	//initialize the router
 	r := gin.Default()
 
+	//all the endpoints will be here
 	r.GET("/", func(c *gin.Context) {
 		c.IndentedJSON(http.StatusOK, "hola mundo")
 	})
