@@ -12,6 +12,8 @@ func main() {
 	//create all tables
 	//preguntarle a a sebas diferencia entre & y * en este caso, para saber si se ahce copia o referencia
 	db.AutoMigrate(models.Book{}, models.Author{})
+	db.Migrator().CurrentDatabase()
+	db.Migrator().GetTables()
 
 	//initialize the router
 	r := gin.Default()
