@@ -20,7 +20,7 @@ func main() {
 
 	//all the endpoints will be here
 	r.GET("/getDatabase", func(c *gin.Context) {
-		c.IndentedJSON(http.StatusOK, "hola mundo")
+		c.IndentedJSON(http.StatusOK, db.Migrator().CurrentDatabase())
 	})
 
 	r.GET("/getTables", func(c *gin.Context) {
@@ -46,7 +46,7 @@ func main() {
 			db.Find(&authors)
 			data = authors
 		default:
-			c.IndentedJSON(http.StatusNotFound, gin.H{"error": "table not found"})
+			c.IndentedJSON(http.StatusNotFound, "Table not found")
 			return
 		}
 		c.IndentedJSON(http.StatusOK, data)
