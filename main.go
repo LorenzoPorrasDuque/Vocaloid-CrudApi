@@ -10,7 +10,6 @@ import (
 func main() {
 	db := database.ConnectToDb()
 	//create all tables
-	//preguntarle a a sebas diferencia entre & y * en este caso, para saber si se ahce copia o referencia
 	db.AutoMigrate(models.Book{}, models.Author{})
 	db.Migrator().CurrentDatabase()
 	db.Migrator().GetTables()
@@ -19,6 +18,8 @@ func main() {
 	r := gin.Default()
 
 	//all the endpoints will be here
+
+	//enpoint to databse all related
 	r.GET("/getDatabase", func(c *gin.Context) {
 		c.IndentedJSON(http.StatusOK, db.Migrator().CurrentDatabase())
 	})
@@ -33,6 +34,7 @@ func main() {
 		c.IndentedJSON(http.StatusOK, tables)
 	})
 
+	//get data from tables
 	r.GET("/data/:table", func(c *gin.Context) {
 		table := c.Param("table")
 		var data interface{}
@@ -51,7 +53,46 @@ func main() {
 		}
 		c.IndentedJSON(http.StatusOK, data)
 	})
+	//endpoints table books
+	r.POST("/books", func(c *gin.Context) {
+		var book models.Book
+		if err := c.BindJSON(&book); err != nil {
+			c.IndentedJSON(http.StatusBadRequest, err.Error())
+			return
+		}
+		db.Create(&book)
+		c.IndentedJSON(http.StatusCreated, book)
+	})
 
+	r.GET("/books/:id", func(c *gin.Context) {
+		var book models.Book
+		id := c.Param("id")
+		db.First(&book, id)
+		c.IndentedJSON(http.StatusOK, book)
+	})
+
+	r.PUT("/books/:id", func(c *gin.Context) {
+		var book models.Book
+		id := c.Param("id")
+		db.First(&book, id)
+		if err := c.BindJSON(&book); err != nil {
+			c.IndentedJSON(http.StatusBadRequest, err.Error())
+			return
+		}
+		db.Save(&book)
+		c.IndentedJSON(http.StatusOK, book)
+	})
+
+	r.DELETE("/books/:id", func(c *gin.Context) {
+		var book models.Book
+		id := c.Param("id")
+		db.First(&book, id)
+		db.Delete(&book)
+		c.IndentedJSON(http.StatusOK, "Book deleted")
+	})
+
+	//endpoints table authors
+	
 	r.Run()
 
 }
