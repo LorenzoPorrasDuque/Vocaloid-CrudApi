@@ -19,8 +19,37 @@ func main() {
 	r := gin.Default()
 
 	//all the endpoints will be here
-	r.GET("/", func(c *gin.Context) {
+	r.GET("/getDatabase", func(c *gin.Context) {
 		c.IndentedJSON(http.StatusOK, "hola mundo")
+	})
+
+	r.GET("/getTables", func(c *gin.Context) {
+		tables, err := db.Migrator().GetTables()
+		if err != nil {
+			c.IndentedJSON(http.StatusInternalServerError, err.Error())
+			return
+		}
+		// Respond with the list of tables as JSON
+		c.IndentedJSON(http.StatusOK, tables)
+	})
+
+	r.GET("/data/:table", func(c *gin.Context) {
+		table := c.Param("table")
+		var data interface{}
+		switch table {
+		case "books":
+			var books []models.Book
+			db.Find(&books)
+			data = books
+		case "authors":
+			var authors []models.Author
+			db.Find(&authors)
+			data = authors
+		default:
+			c.IndentedJSON(http.StatusNotFound, gin.H{"error": "table not found"})
+			return
+		}
+		c.IndentedJSON(http.StatusOK, data)
 	})
 
 	r.Run()
