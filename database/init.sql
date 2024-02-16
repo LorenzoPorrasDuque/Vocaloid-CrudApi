@@ -8,6 +8,7 @@ INSERT INTO public.vocaloids (id, name, age) VALUES
 
 INSERT INTO public.songs (song_id, name, description, vocaloid_id) VALUES
 (DEFAULT, 'World is Mine', 'Catchy and popular song by Hatsune Miku', 1),
+(DEFAULT, 'Valentines ', 'Im gonna confess to you on valentines day ', 1),
 (DEFAULT, 'Romeo and Cinderella', 'Sweet and melancholic song by Kagamine Rin', 2),
 (DEFAULT, 'Remote Control', 'Lively duet by Kagamine Rin and Len', 3),
 (DEFAULT, 'Just Be Friends', 'Emotional song by Megurine Luka', 4),

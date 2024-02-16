@@ -30,3 +30,22 @@ func ConnectToDb() *gorm.DB {
 	fmt.Println("Connected to the database")
 	return database
 }
+
+func ExecuteSQLFile(db *gorm.DB, filePath string) error {
+	fileContent, err := os.ReadFile(filePath)
+	if err != nil {
+		return err
+	}
+
+	// Convert []byte to string
+	sqlScript := string(fileContent)
+	fmt.Print(sqlScript)
+
+	// Execute SQL script
+	result := db.Exec(sqlScript)
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
+}
