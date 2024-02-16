@@ -1,6 +1,6 @@
 package models
 
-type Author struct {
+type Songs struct {
 	Name string
 	Age  int
 }

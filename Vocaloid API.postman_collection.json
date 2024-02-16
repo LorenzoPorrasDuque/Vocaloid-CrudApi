@@ -1,0 +1,338 @@
+{
+	"info": {
+		"_postman_id": "d0ec2d34-2922-49ef-b832-30fb28be963d",
+		"name": "Vocaloid API",
+		"description": "All endpoints with examples in the Body",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33023793"
+	},
+	"item": [
+		{
+			"name": "vocaloids",
+			"item": [
+				{
+					"name": "createVocaloid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Prueba\",\r\n    \"age\": 26\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/vocaloid",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vocaloid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getVocaloidID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/vocaloid/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vocaloid",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateVocaloid",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Por que se coloca de ultimo? \",\r\n    \"age\": 26\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/vocaloid/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vocaloid",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteVocaloid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/vocaloid/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vocaloid",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints to \"vocaloids\" table"
+		},
+		{
+			"name": "songs",
+			"item": [
+				{
+					"name": "createSong",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Cancion prueba\",\r\n    \"description\":\"No se es una prueba xd\",\r\n    \"vocaloid_id\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/song",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"song"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSong",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/song/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"song",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateSong",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"se actualiza?\",\r\n    \"description\":\"No se es una prueba xd\",\r\n    \"vocaloid_is\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/song/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"song",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteSong",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/song/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"song",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints to \"songs\" table"
+		},
+		{
+			"name": "getDatabase",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/getDatabase",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getDatabase"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTables",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/getTables",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getTables"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "allDataTable",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "localhost:8080/data/:table",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"data",
+						":table"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "table",
+							"value": "vocaloids"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
